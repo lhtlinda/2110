@@ -1,19 +1,26 @@
 
 public class LinkedList<T> {
-	@SuppressWarnings("rawtypes")
-	private Node header,current;
+	protected Node<T> header,current;
 	private int length;
 
-	@SuppressWarnings("unchecked")
+	
 	public void join(T t){
-		Node<T> temp =new Node<T>(t);
-		current.setNext(temp);
-		current=temp;
+		if (current.equals(header)){
+			Node<T> temp =new Node<T>(t,header,null);
+			header.setNext(temp);
+			current=temp;
+		}
+		else
+		{
+			Node<T> temp =new Node<T>(t,current.getPrevious().getNext(),null);
+			current.getPrevious().getNext().setNext(temp);
+			current=temp;
+		}
 		length++;
 	}
 	
 	
-	@SuppressWarnings("unchecked")
+
 	public void leave(){
 		 if (current!=null&&current.equals(header)){
 			 if (current.getNext()!=null){
@@ -45,16 +52,18 @@ public class LinkedList<T> {
 		return (length==0);
 	}
 	
-	public LinkedList(Person p){;
+
+	public LinkedList(T t){;
 		this.length=0;
-		this.header=new Node<Person>(null);
-		this.current=new Node<Person>(p);
+		this.header=new Node<T>(null,null,null);
+		this.current=header;
+		join(t);
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+
 	public LinkedList(){
 		this.length=0;
-		this.header=new Node(null,null);
+		this.header=new Node<T>(null,null);
 		this.current=header;
 	
 }
