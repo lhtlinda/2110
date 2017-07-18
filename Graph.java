@@ -131,12 +131,12 @@ public class Graph {
 
 	/** method does breadth-first search*/
 	public static void BFS(Person start, Person finish){
+		System.out.println("Performing BFS...");
 		if (start.equals(finish)){
 			System.out.println("Oops, same person!");
 		}
 		else
 		{
-			int count=0;
 			boolean found= false;
 			markAsVisited(start);
 			MyQueue queue= new MyQueue();
@@ -144,7 +144,6 @@ public class Graph {
 			while ((!queue.isEmpty())&&found==false){
 				Person out=queue.leave();
 				System.out.println(out.name);
-				count++;
 				if (out.equals(finish)){
 					found=true;
 				}
@@ -160,7 +159,6 @@ public class Graph {
 					}
 				}
 			}
-			System.out.println("Person found in "+ count +" steps!");
 		}
 		
 	}
@@ -168,21 +166,22 @@ public class Graph {
 	
 	/** method does depth-first search*/
 	public static void DFS(Person start, Person finish){
+		System.out.println("Performing DFS...");
 		if (start.equals(finish)){
 			System.out.println("Same person!");
 		}
 		else
 		{
 			boolean found=false;
-			int count=0;
-			int finalSteps=dfs(start,finish,found,count);
-			System.out.println("Person found in "+ finalSteps +" steps!");
+			dfs(start,finish,found);
+			System.out.print(finish.name);
 		}
 	}
 
 	
 	/** method does BFS in both directions until paths collide */
 	public static void BidirectionalBFS(Person beg, Person end){
+		System.out.println("Performing Bidirectional BFS...");
 		if (beg.equals(end)){
 			System.out.println("Same person!");
 		}
@@ -193,28 +192,27 @@ public class Graph {
 			MyQueue finish= new MyQueue();
 			start.join(beg);
 			finish.join(end);
+			System.out.println(beg.name);
+			System.out.println(end.name);
 			ArrayList<Person> visitedForStart= new ArrayList<Person>();
 			ArrayList<Person> visitedForFinish= new ArrayList<Person>();
 			visitedForStart.add(beg);
 			visitedForFinish.add(end);
-			ArrayList<Person> backwards= new ArrayList<Person>();
-			int count=0;
 			while ((!start.isEmpty())&&(!collision)&&(!finish.isEmpty())){
 				Person star=start.leave();
 				Person fini=finish.leave();
-				backwards.add(fini);
-				System.out.println(star.name);
-				count+=2;
 				if (visitedForStart.contains(fini) || visitedForFinish.contains(star)) {
 					collision = true;
 				}
+				
 				ArrayList<Person> newOne= findPerson(adjacencyList,star);
 				ArrayList<Person> newTwo= findPerson(reverseDirection(),fini);
 				for (int i=1;i<newOne.size();i++){
 					Person person = newOne.get(i);
 					if (!visitedForStart.contains(person)){
 						start.join(person);
-						visitedForStart.add(person);	
+						visitedForStart.add(person);
+						System.out.println(person.name);
 					}
 				}
 				for (int i=1;i<newTwo.size();i++){
@@ -222,13 +220,10 @@ public class Graph {
 					if (!visitedForFinish.contains(per)){
 						finish.join(per);
 						visitedForFinish.add(per);
+						System.out.println(per.name);
 					}
 				}
 			}
-			for (int i=backwards.size()-1;i>=0;i--){
-				System.out.println(backwards.get(i).name);
-			}
-			System.out.println("Person found in "+ count +" steps!");
 		}
 	}
 
@@ -257,10 +252,9 @@ public class Graph {
 	}
 	
 	/** dfs does depth-first search recursively*/
-	private static int dfs(Person start, Person finish,boolean found, int count){
-		System.out.println(start.name);
-		count++;
+	private static void dfs(Person start, Person finish,boolean found){
 		if (!start.equals(finish)&&found==false){
+			System.out.println(start.name);
 			markAsVisited(start);
 			ArrayList<Person> newOne= findPerson(adjacencyList,start);
 			for (int i=1;(i<newOne.size())&&(found==false);i++){
@@ -268,7 +262,7 @@ public class Graph {
 				if ((!person.equals(finish))){
 					if(!visited(person)){
 						markAsVisited(person);
-						count=dfs(person,finish,found,count);// recursive call, ends when found
+						dfs(person,finish,found);// recursive call, ends when found
 					}
 				}
 				else
@@ -277,8 +271,6 @@ public class Graph {
 				}
 			}
 		}
-		return count;	
-		
 	}
 
 	/** reverseDirection reverse the directed graph*/
