@@ -1,4 +1,4 @@
-Sneha Kumar, Linda Lu — sk2279, hl723 — CS 2110 Summer 2017 — HW 3
+Sneha Kumar, Haitian (Linda) Lu — sk2279, hl723 — CS 2110 Summer 2017 — HW 3
 
 #############################################################
 
