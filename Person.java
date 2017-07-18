@@ -1,13 +1,11 @@
 
 public class Person {
-	protected String person;
+	protected String name;
 	protected boolean visited;
-	
+
 	protected Person(String input){
-		this.person=input;
+		this.name=input;
 		this.visited=false;
 	}
 	
-	
-
 }

@@ -1,50 +1,48 @@
 
 public class Node<T> {
-	private Object data;
+	private T data;
 	private Node<T> next;
 	private Node<T> prev;
-	
-	@SuppressWarnings("unchecked")
-	public T getData(){
-		return (T) data;
+
+
+	protected T getData(){
+		return data;
 	}
-	public void setData(T t){
-		data = (T) t ;
+	protected void setData(T t){
+		data = t ;
 	} 
-	
-	public Node<T> getNext(){
+
+	protected Node<T> getNext(){
 		return (Node<T>) next ; 
 	}
-	
-	public Node<T> getPrevious(){
+
+	protected Node<T> getPrevious(){
 		return (Node<T>) prev;
 	}
-	public void setNext(Node<T> n){
+	protected void setNext(Node<T> n){
 		next = n ; 
 	}
-	
-	public void setPrevious(Node<T> n ){
+
+	protected void setPrevious(Node<T> n ){
 		prev=n;
 	}
-	
-	public Node(T t, Node<T> pre, Node<T> nex){
-		data= (T) t;
+
+	protected Node(T t, Node<T> pre, Node<T> nex){
+		data= t;
 		prev=pre;
 		next=nex;
 	}
-	
-	public Node(T t,Node<T> n){
+
+	protected Node(T t,Node<T> n){
 		data = (T) t;
 		next = n;
 	}
-	
-	public Node(T t){
+
+	protected Node(T t){
 		data=t;
 		next=null;
 		prev=null;
 	}
-	public Node( ){
-		this (null) ; 
-	}
+
 
 }
