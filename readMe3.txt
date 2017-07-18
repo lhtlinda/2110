@@ -11,12 +11,12 @@ Supporting Classes:
 	Node.java
 	MyStack.java
 	
-	
 Exception Classes: 
 	InvalidRPNException.java
 	InvalidInfixException.java
 JUnit Test Classes:
 	CalculatorTest.java
+	ParserTest.java
 	
 	Version 1: 
 	
