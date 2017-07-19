@@ -11,17 +11,16 @@ Supporting Classes:
 	Node.java
 	MyStack.java
 	
-Exception Classes: 
-	InvalidRPNException.java
-	InvalidInfixException.java
 JUnit Test Classes:
 	CalculatorTest.java
 	ParserTest.java
-	
-	Version 1: 
-	
+	 
+I created a calculator class with methods to validate Infix and RPN expressions, convert from one notation to the other, and finally evaluate the expression. I created an expression parser class which would parse the input string and return each next token (either number or operator) in the string. I used the MyStack class primarily to store the parsed numbers and evaluations at each iteration. I also added a user interface prompting the user to enter a string. If it is not in valid Infix or Reverse Polish Notation, the user will be informed and the program will terminate.   	
+
+
 Non-implemented changes:
-	1. 
+	1. If the user enters an invalid expression, prompt them to try again rather than terminating the program.
+	2. Add an option for using prefix notation as well.
 
 #############################################################
 
